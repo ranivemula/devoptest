@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  tasks:
+  - name: install amazon linux extras
+    shell: sudo amazon-linux-extras install epel -y
+  - name: install java
+    shell: sudo yum install java-1.8* -y
+  - name: install wget
+    shell: sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+  - name: install rpm
+    shell: sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+  - name: install jenkins
+    shell: sudo yum install jenkins -y
+
+  - name: start jenkins
+    shell: sudo systemctl start jenkins
+  
+  - name: Enable jenkins
+    shell: sudo systemctl enable jenkins
